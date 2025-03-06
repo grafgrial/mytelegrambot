@@ -31,4 +31,5 @@ async def main() -> None:
 
 if __name__ == '__main__':
     import asyncio
-    asyncio.run(main())
+    # Убираем asyncio.run() и запускаем main() напрямую
+    asyncio.get_event_loop().run_until_complete(main())
