@@ -2,10 +2,6 @@ import os
 import logging
 from telegram import Update, LabeledPrice
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, PreCheckoutQueryHandler, CallbackContext
-from dotenv import load_dotenv
-
-# Загрузка переменных окружения
-load_dotenv()
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
