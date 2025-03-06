@@ -65,4 +65,35 @@ async def send_latest_video(message: types.Message):
 async def on_startup(app):
     """Действия при запуске сервера."""
     # Установка webhook
-    webhook_url = f"https://{os.getenv
+    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
+    await bot.set_webhook(webhook_url)
+    logging.info(f"Webhook установлен на {webhook_url}")
+
+async def on_shutdown(app):
+    """Действия при завершении работы сервера."""
+    # Удаление webhook
+    await bot.delete_webhook()
+    logging.info("Webhook удален")
+
+# Создание aiohttp приложения
+app = web.Application()
+
+# Регистрация обработчика webhook
+webhook_request_handler = WebhookRequestHandler(dp, bot)
+app.router.add_post('/webhook', webhook_request_handler)
+
+# Запуск сервера
+if __name__ == '__main__':
+    # Укажите порт, который будет прослушивать сервер
+    PORT = int(os.getenv('PORT', 8080))
+
+    # Запуск вебхука
+    start_webhook(
+        dispatcher=dp,
+        webhook_path='/webhook',
+        on_startup=on_startup,
+        on_shutdown=on_shutdown,
+        skip_updates=True,
+        host='0.0.0.0',
+        port=PORT,
+    )
