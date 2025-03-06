@@ -1,22 +1,25 @@
 import os
 import logging
-import asyncio
 import requests
 from bs4 import BeautifulSoup
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
+from aiogram.contrib.middlewares.logging import LoggingMiddleware
+from aiogram.dispatcher.webhook import WebhookRequestHandler
+from aiohttp import web
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
 # Чтение токена из переменной окружения
-API_TOKEN = os.getenv('API_TOKEN')  # Используем переменную окружения
+API_TOKEN = os.getenv('API_TOKEN')
 if not API_TOKEN:
     raise ValueError("Не удалось загрузить API_TOKEN из переменных окружения.")
 
-# Инициализация бота
+# Инициализация бота и диспетчера
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+dp.middleware.setup(LoggingMiddleware())
 
 # URL канала YouTube
 YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@GrAlUnrealEngine/videos"
@@ -59,29 +62,28 @@ async def send_latest_video(message: types.Message):
     else:
         await message.reply("Не удалось получить последнее видео.")
 
-async def check_new_videos():
-    """Периодически проверяет новые видео и отправляет их в Telegram."""
-    global last_video_url
-    while True:
-        title, url, thumbnail = get_latest_video()
-        if url and url != last_video_url:  # Если видео новое
-            last_video_url = url  # Обновляем последнее отправленное видео
-            # Отправляем новое видео всем пользователям
-            for user_id in await get_all_users():
-                try:
-                    await bot.send_photo(user_id, thumbnail, caption=f"🎥 Новое видео!\n{title}\n🔗 {url}")
-                except Exception as e:
-                    logging.error(f"Ошибка при отправке сообщения пользователю {user_id}: {e}")
-        await asyncio.sleep(300)  # Проверяем каждые 5 минут
+async def on_startup(app):
+    """Действия при запуске сервера."""
+    # Установка webhook
+    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
+    await bot.set_webhook(webhook_url)
+    logging.info(f"Webhook установлен на {webhook_url}")
 
-async def get_all_users():
-    """Возвращает список всех пользователей, которые начали диалог с ботом."""
-    # В реальном проекте лучше использовать базу данных для хранения пользователей
-    # Здесь для простоты возвращаем пустой список
-    return []
+async def on_shutdown(app):
+    """Действия при завершении работы сервера."""
+    # Удаление webhook
+    await bot.delete_webhook()
+    logging.info("Webhook удален")
 
+# Создание aiohttp приложения
+app = web.Application()
+app.on_startup.append(on_startup)
+app.on_shutdown.append(on_shutdown)
+
+# Регистрация обработчика webhook
+webhook_request_handler = WebhookRequestHandler(dp)
+app.router.add_post('/webhook', webhook_request_handler)
+
+# Запуск сервера
 if __name__ == '__main__':
-    # Запуск бота в режиме long-polling
-    loop = asyncio.get_event_loop()
-    loop.create_task(check_new_videos())  # Запускаем фоновую задачу
-    executor.start_polling(dp, skip_updates=True)
+    web.run_app(app, port=8080)
