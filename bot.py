@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Токен вашего бота
-BOT_TOKEN = os.getenv("BOT_TOKEN")  # Получите токен от BotFather
+BOT_TOKEN = os.getenv("API_TOKEN")  # Получите токен от BotFather
 
 # Ссылки на курсы
 COURSE_LINKS = {
