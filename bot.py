@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Токен вашего бота
-BOT_TOKEN = os.getenv("API_TOKEN")  # Получите токен от BotFather
+BOT_TOKEN = os.getenv("API_TOKEN")  # Используем переменную окружения API_TOKEN
 
 # Ссылки на курсы
 COURSE_LINKS = {
@@ -83,7 +83,7 @@ async def successful_payment(update: Update, context: CallbackContext):
         logger.error(f"Ошибка при обработке платежа: неизвестный payload {payload}")
 
 # Запуск бота
-def main():
+async def main():
     application = Application.builder().token(BOT_TOKEN).build()
 
     # Регистрация обработчиков
@@ -93,8 +93,17 @@ def main():
     application.add_handler(PreCheckoutQueryHandler(precheckout))
     application.add_handler(MessageHandler(filters.SUCCESSFUL_PAYMENT, successful_payment))
 
-    # Запуск бота
-    application.run_polling()
+    # Установка webhook
+    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
+    await application.bot.set_webhook(webhook_url)
+
+    # Запуск приложения
+    await application.run_webhook(
+        listen="0.0.0.0",
+        port=int(os.getenv('PORT', 8080)),
+        webhook_url=webhook_url,
+    )
 
 if __name__ == "__main__":
-    main()
+    import asyncio
+    asyncio.run(main())
