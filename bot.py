@@ -4,7 +4,6 @@ import requests
 from bs4 import BeautifulSoup
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
-from aiogram.dispatcher.webhook import WebhookRequestHandler
 from aiogram.utils.executor import start_webhook
 from aiohttp import web
 
@@ -74,13 +73,6 @@ async def on_shutdown(app):
     # Удаление webhook
     await bot.delete_webhook()
     logging.info("Webhook удален")
-
-# Создание aiohttp приложения
-app = web.Application()
-
-# Регистрация обработчика webhook
-webhook_request_handler = WebhookRequestHandler(dp)  # Передаем только диспетчер
-app.router.add_post('/webhook', webhook_request_handler)
 
 # Запуск сервера
 if __name__ == '__main__':
