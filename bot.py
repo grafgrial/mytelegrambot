@@ -1,9 +1,18 @@
+import os
+import logging
 from telegram import Update, LabeledPrice
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, PreCheckoutQueryHandler, CallbackContext
-import os
+from dotenv import load_dotenv
+
+# Загрузка переменных окружения
+load_dotenv()
+
+# Настройка логирования
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Токен вашего бота
-BOT_TOKEN = os.getenv("API_TOKEN")  # Получите токен от BotFather
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # Получите токен от BotFather
 
 # Ссылки на курсы
 COURSE_LINKS = {
@@ -32,7 +41,7 @@ async def buy_beginner(update: Update, context: CallbackContext):
     title = "Курс новичка в UE"
     description = "Доступ к курсу для новичков в Unreal Engine."
     payload = "course_beginner"  # Уникальный идентификатор платежа
-    provider_token = "YOUR_PROVIDER_TOKEN"  # Токен платежного провайдера (от BotFather)
+    provider_token = os.getenv("PAYMENT_PROVIDER_TOKEN")  # Токен платежного провайдера (от BotFather)
     currency = "RUB"
     prices = PRICES["course_beginner"]
 
@@ -46,7 +55,7 @@ async def buy_advanced(update: Update, context: CallbackContext):
     title = "Курс продвинутой UE"
     description = "Доступ к курсу для продвинутых в Unreal Engine."
     payload = "course_advanced"  # Уникальный идентификатор платежа
-    provider_token = "YOUR_PROVIDER_TOKEN"  # Токен платежного провайдера (от BotFather)
+    provider_token = os.getenv("PAYMENT_PROVIDER_TOKEN")  # Токен платежного провайдера (от BotFather)
     currency = "RUB"
     prices = PRICES["course_advanced"]
 
@@ -75,6 +84,7 @@ async def successful_payment(update: Update, context: CallbackContext):
         await update.message.reply_text(f"Оплата прошла успешно! Ваша ссылка на курс: {link}")
     else:
         await update.message.reply_text("Оплата прошла успешно, но произошла ошибка. Свяжитесь с поддержкой.")
+        logger.error(f"Ошибка при обработке платежа: неизвестный payload {payload}")
 
 # Запуск бота
 def main():
