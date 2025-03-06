@@ -3,9 +3,9 @@ import logging
 import requests
 from bs4 import BeautifulSoup
 from aiogram import Bot, Dispatcher, types
-from aiogram.utils import executor
 from aiogram.contrib.middlewares.logging import LoggingMiddleware
 from aiogram.dispatcher.webhook import WebhookRequestHandler
+from aiogram.utils.executor import start_webhook
 from aiohttp import web
 
 # Настройка логирования
@@ -65,25 +65,4 @@ async def send_latest_video(message: types.Message):
 async def on_startup(app):
     """Действия при запуске сервера."""
     # Установка webhook
-    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
-    await bot.set_webhook(webhook_url)
-    logging.info(f"Webhook установлен на {webhook_url}")
-
-async def on_shutdown(app):
-    """Действия при завершении работы сервера."""
-    # Удаление webhook
-    await bot.delete_webhook()
-    logging.info("Webhook удален")
-
-# Создание aiohttp приложения
-app = web.Application()
-app.on_startup.append(on_startup)
-app.on_shutdown.append(on_shutdown)
-
-# Регистрация обработчика webhook
-webhook_request_handler = WebhookRequestHandler(dp)
-app.router.add_post('/webhook', webhook_request_handler)
-
-# Запуск сервера
-if __name__ == '__main__':
-    web.run_app(app, port=8080)
+    webhook_url = f"https://{os.getenv
