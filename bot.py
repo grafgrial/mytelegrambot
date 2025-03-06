@@ -1,6 +1,10 @@
 import os
+import logging
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
+
+# Настройка логирования
+logging.basicConfig(level=logging.INFO)
 
 # Чтение токена из переменной окружения
 TOKEN = os.getenv('API_TOKEN')
@@ -31,5 +35,18 @@ async def main() -> None:
 
 if __name__ == '__main__':
     import asyncio
-    # Убираем asyncio.run() и запускаем main() напрямую
-    asyncio.get_event_loop().run_until_complete(main())
+
+    # Проверяем, существует ли event loop
+    try:
+        loop = asyncio.get_event_loop()
+    except RuntimeError:
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+
+    # Запускаем main() без создания нового event loop
+    if loop.is_running():
+        # Если event loop уже запущен, используем create_task
+        loop.create_task(main())
+    else:
+        # Если event loop не запущен, используем run_until_complete
+        loop.run_until_complete(main())
