@@ -1,21 +1,34 @@
+import os
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, CallbackContext
+from telegram.ext import Application, CommandHandler, ContextTypes
 
-def start(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('Привет! Я ваш бот.')
+# Чтение токена из переменной окружения
+TOKEN = os.getenv('API_TOKEN')
+if not TOKEN:
+    raise ValueError("Не удалось загрузить API_TOKEN из переменных окружения.")
 
-def main() -> None:
-    # Вставьте сюда ваш токен
-    updater = Updater("ВАШ_ТОКЕН")
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """Обработчик команды /start."""
+    await update.message.reply_text('Привет! Я ваш бот.')
 
-    dispatcher = updater.dispatcher
+async def main() -> None:
+    # Создаем приложение
+    application = Application.builder().token(TOKEN).build()
 
-    # Регистрируем команду /start
-    dispatcher.add_handler(CommandHandler("start", start))
+    # Регистрируем обработчик команды /start
+    application.add_handler(CommandHandler("start", start))
 
-    # Запускаем бота
-    updater.start_polling()
-    updater.idle()
+    # Устанавливаем webhook
+    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
+    await application.bot.set_webhook(webhook_url)
+
+    # Запускаем приложение
+    await application.run_webhook(
+        listen="0.0.0.0",
+        port=int(os.getenv('PORT', 8080)),
+        webhook_url=webhook_url,
+    )
 
 if __name__ == '__main__':
-    main()
+    import asyncio
+    asyncio.run(main())
