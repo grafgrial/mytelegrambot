@@ -79,7 +79,7 @@ async def on_shutdown(app):
 app = web.Application()
 
 # Регистрация обработчика webhook
-webhook_request_handler = WebhookRequestHandler(dp, bot)
+webhook_request_handler = WebhookRequestHandler(dp)  # Передаем только диспетчер
 app.router.add_post('/webhook', webhook_request_handler)
 
 # Запуск сервера
