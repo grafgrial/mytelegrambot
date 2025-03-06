@@ -9,8 +9,12 @@ from aiogram.utils import executor
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
+# Чтение токена из переменной окружения
+API_TOKEN = os.getenv('API_TOKEN')  # Используем переменную окружения
+if not API_TOKEN:
+    raise ValueError("Не удалось загрузить API_TOKEN из переменных окружения.")
+
 # Инициализация бота
-API_TOKEN = '7857342123:AAG7UiVVK1bQbaNrNMARQUueBO2NoJOE_gk'
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
