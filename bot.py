@@ -1,4 +1,7 @@
 import os
+from pyrogram import Client, __version__
+from pyrogram.raw.all import layer
+from pyrogram import types
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from info import BOT_TOKEN
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
