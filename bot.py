@@ -1,9 +1,17 @@
 import os
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+from info import BOT_TOKEN
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
 BOT_TOKEN = os.getenv("API_TOKEN")
 
+class Bot(Client):
+
+    def __init__(self):
+        super().__init__(
+            bot_token=BOT_TOKEN,
+            )
+        
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "Welcome!\n\nTo get started, you can choose one of the following options:\n/menu - To view the menu\n/help - To learn how to use this bot\n/settings - To manage your account settings"
@@ -43,3 +51,7 @@ async def buy(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
     await update
+
+
+app = Bot()
+app.run()
