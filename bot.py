@@ -1,6 +1,8 @@
 from telegram import Update, ReplyKeyboardMarkup, KeyboardButton
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
+BOT_TOKEN = os.getenv("API_TOKEN")
+
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "Welcome! \nTo get started, you can choose one of the following options: \n/help - To learn how to use this bot \n/buy - To buy access and start using our services \n/settings - To manage your account settings"
@@ -31,7 +33,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("You chose to pay for access.")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token("API_TOKEN").build()
+    application = ApplicationBuilder().token(BOT_TOKEN).build()
 
     start_handler = CommandHandler('start', start)
     buy_handler = CommandHandler('buy', buy)
