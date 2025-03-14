@@ -31,7 +31,7 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("You chose to pay for access.")
 
 if __name__ == '__main__':
-    application = ApplicationBuilder().token("YOUR_BOT_TOKEN").build()
+    application = ApplicationBuilder().token("API_TOKEN").build()
 
     start_handler = CommandHandler('start', start)
     buy_handler = CommandHandler('buy', buy)
