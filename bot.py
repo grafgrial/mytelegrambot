@@ -1,109 +1,20 @@
-import os
-import logging
-from telegram import Update, LabeledPrice
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, PreCheckoutQueryHandler, CallbackContext
+import telegram
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-# Настройка логирования
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+def start(bot, update):
+    bot.send_message(chat_id=update.effective_chat.id, text="Welcome! \nTo get started, you can choose one of the following options: \n/help - To learn how to use this bot \n/buy - To buy access and start using our services \n/settings - To manage your account settings")
+Create a function to handle the /buy command:
 
-# Токен вашего бота
-BOT_TOKEN = os.getenv("API_TOKEN")  # Используем переменную окружения API_TOKEN
+def buy(bot, update):
+    bot.send_message(chat_id=update.effective_chat.id, text="Thanks for choosing our services! \nTo get started, you can choose one of the following options: \n-Probationary period (7 days) \n-Pay for access and start using our services")
 
-# Ссылки на курсы
-COURSE_LINKS = {
-    "course_beginner": "http://ruinfiniti.ru/kurs1",
-    "course_advanced": "http://ruinfiniti.ru/kurs2",
-}
+    markup = telegram.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = telegram.KeyboardButton("Probationary period")
+    item2 = telegram.KeyboardButton("Pay for access")
+    markup.add(item1, item2)
 
-# Цены на курсы (в копейках/центах)
-PRICES = {
-    "course_beginner": [LabeledPrice("Курс новичка в UE", 10000)],  # 100 рублей
-    "course_advanced": [LabeledPrice("Курс продвинутой UE", 20000)],  # 200 рублей
-}
+    bot.send_message(chat_id=update.effective_chat.id, text="Please select an option:", reply_markup=markup)
+Create a function to handle the /help command:
 
-# Команда /start
-async def start(update: Update, context: CallbackContext):
-    await update.message.reply_text(
-        "Привет! Выберите курс для покупки:\n\n"
-        "1. Курс новичка в UE - 100 рублей\n"
-        "2. Курс продвинутой UE - 200 рублей\n\n"
-        "Для покупки введите /buy_beginner или /buy_advanced."
-    )
-
-# Команда для покупки курса новичка
-async def buy_beginner(update: Update, context: CallbackContext):
-    chat_id = update.message.chat_id
-    title = "Курс новичка в UE"
-    description = "Доступ к курсу для новичков в Unreal Engine."
-    payload = "course_beginner"  # Уникальный идентификатор платежа
-    provider_token = os.getenv("PAYMENT_PROVIDER_TOKEN")  # Токен платежного провайдера (от BotFather)
-    currency = "RUB"
-    prices = PRICES["course_beginner"]
-
-    await context.bot.send_invoice(
-        chat_id, title, description, payload, provider_token, currency, prices
-    )
-
-# Команда для покупки курса продвинутого
-async def buy_advanced(update: Update, context: CallbackContext):
-    chat_id = update.message.chat_id
-    title = "Курс продвинутой UE"
-    description = "Доступ к курсу для продвинутых в Unreal Engine."
-    payload = "course_advanced"  # Уникальный идентификатор платежа
-    provider_token = os.getenv("PAYMENT_PROVIDER_TOKEN")  # Токен платежного провайдера (от BotFather)
-    currency = "RUB"
-    prices = PRICES["course_advanced"]
-
-    await context.bot.send_invoice(
-        chat_id, title, description, payload, provider_token, currency, prices
-    )
-
-# Обработка предварительного запроса оплаты
-async def precheckout(update: Update, context: CallbackContext):
-    query = update.pre_checkout_query
-    await query.answer(ok=True)
-
-# Обработка успешной оплаты
-async def successful_payment(update: Update, context: CallbackContext):
-    payment = update.message.successful_payment
-    payload = payment.invoice_payload
-
-    if payload == "course_beginner":
-        link = COURSE_LINKS["course_beginner"]
-    elif payload == "course_advanced":
-        link = COURSE_LINKS["course_advanced"]
-    else:
-        link = None
-
-    if link:
-        await update.message.reply_text(f"Оплата прошла успешно! Ваша ссылка на курс: {link}")
-    else:
-        await update.message.reply_text("Оплата прошла успешно, но произошла ошибка. Свяжитесь с поддержкой.")
-        logger.error(f"Ошибка при обработке платежа: неизвестный payload {payload}")
-
-# Запуск бота
-async def main():
-    application = Application.builder().token(BOT_TOKEN).build()
-
-    # Регистрация обработчиков
-    application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("buy_beginner", buy_beginner))
-    application.add_handler(CommandHandler("buy_advanced", buy_advanced))
-    application.add_handler(PreCheckoutQueryHandler(precheckout))
-    application.add_handler(MessageHandler(filters.SUCCESSFUL_PAYMENT, successful_payment))
-
-    # Установка webhook
-    webhook_url = f"https://{os.getenv('RENDER_EXTERNAL_HOSTNAME')}/webhook"
-    await application.bot.set_webhook(webhook_url)
-
-    # Запуск приложения
-    await application.run_webhook(
-        listen="0.0.0.0",
-        port=int(os.getenv('PORT', 8080)),
-        webhook_url=webhook_url,
-    )
-
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+def help(bot, update):
+    bot.send_message(chat_id=update.effective_chat.id, text="This bot provides the following commands: \n/start - To
