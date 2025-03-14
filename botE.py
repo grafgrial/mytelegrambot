@@ -103,7 +103,7 @@ def schedule_tasks():
         print("Сейчас не время для квиза")
     
     # Запускаем задачу снова через 5 минут
-    threading.Timer(5 * 60, schedule_tasks).start()
+    threading.Timer(24 * 60 * 60, schedule_tasks).start()
 
 # Главная функция для запуска бота
 if __name__ == "__main__":
