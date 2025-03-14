@@ -3,8 +3,6 @@ from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from info import BOT_TOKEN
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes
 
-BOT_TOKEN = os.getenv("API_TOKEN")
-
 class Bot(Client):
 
     def __init__(self):
