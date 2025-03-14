@@ -1,0 +1,362 @@
+[
+    {
+        "question": "Что такое Unreal Engine?",
+        "options": [
+            "Графический редактор",
+            "Игровой движок",
+            "Операционная система",
+            "Язык программирования"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой язык программирования чаще всего используется в Unreal Engine?",
+        "options": [
+            "Python",
+            "C++",
+            "Java",
+            "JavaScript"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Что такое Blueprint в Unreal Engine?",
+        "options": [
+            "Графический редактор",
+            "Система визуального скриптинга",
+            "Тип освещения",
+            "Модель персонажа"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой формат файлов используется для 3D-моделей в Unreal Engine?",
+        "options": [
+            ".fbx",
+            ".png",
+            ".mp4",
+            ".txt"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Actor в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Базовый класс для всех объектов в сцене",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания ландшафтов в Unreal Engine?",
+        "options": [
+            "Landscape Tool",
+            "Material Editor",
+            "Blueprint Editor",
+            "Sequencer"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Material в Unreal Engine?",
+        "options": [
+            "Тип анимации",
+            "Шейдер, определяющий внешний вид поверхности",
+            "Скрипт для управления персонажем",
+            "Форма освещения"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания анимаций в Unreal Engine?",
+        "options": [
+            "Sequencer",
+            "Blueprint Editor",
+            "Material Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Level в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Отдельный уровень или сцена в игре",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных материалов в Unreal Engine?",
+        "options": [
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool",
+            "Sequencer"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Pawn в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Базовый класс для управляемых игроком или AI объектов",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания интерактивных сцен в Unreal Engine?",
+        "options": [
+            "Blueprint Editor",
+            "Material Editor",
+            "Landscape Tool",
+            "Sequencer"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Widget в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Элемент пользовательского интерфейса",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания кинематографических сцен в Unreal Engine?",
+        "options": [
+            "Sequencer",
+            "Blueprint Editor",
+            "Material Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Collision в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Система обнаружения столкновений",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания физических эффектов в Unreal Engine?",
+        "options": [
+            "Physics Asset Tool",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Lightmap в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Текстура, хранящая информацию об освещении",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания звуковых эффектов в Unreal Engine?",
+        "options": [
+            "Sound Cue Editor",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Niagara в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Система для создания визуальных эффектов",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных анимаций персонажей в Unreal Engine?",
+        "options": [
+            "Animation Blueprint",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Texture в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Изображение, используемое для создания материалов",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных AI в Unreal Engine?",
+        "options": [
+            "Behavior Tree",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Post Process Volume в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Объем, применяющий пост-обработку к сцене",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных материалов с анимацией в Unreal Engine?",
+        "options": [
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool",
+            "Sequencer"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Static Mesh в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "3D-модель, которая не деформируется",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных физических взаимодействий в Unreal Engine?",
+        "options": [
+            "Physics Asset Tool",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое Skeletal Mesh в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "3D-модель с костями для анимации",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных пользовательских интерфейсов в Unreal Engine?",
+        "options": [
+            "UMG (Unreal Motion Graphics)",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    },
+    {
+        "question": "Что такое LOD (Level of Detail) в Unreal Engine?",
+        "options": [
+            "Тип освещения",
+            "Технология оптимизации, уменьшающая детализацию объектов на расстоянии",
+            "Язык программирования",
+            "Графический эффект"
+        ],
+        "currentOption": 1
+    },
+    {
+        "question": "Какой инструмент используется для создания сложных сцен с динамическим освещением в Unreal Engine?",
+        "options": [
+            "Lighting Tool",
+            "Material Editor",
+            "Blueprint Editor",
+            "Landscape Tool"
+        ],
+        "currentOption": 0
+    }
+	{ "question": "Какой инструмент используется для создания ландшафтов в Unreal Engine?", "options": [ "Landscape Tool", "Foliage Tool", "Material Editor", "Blueprint Editor" ], "currentOption": 0 },
+
+{ "question": "Какой формат файлов используется для импорта 3D моделей в Unreal Engine?", "options": [ ".jpg", ".fbx", ".mp3", ".txt" ], "currentOption": 1 },
+
+{ "question": "Какой компонент отвечает за физику в Unreal Engine?", "options": [ "Static Mesh", "Physics Constraint", "Particle System", "Sound Cue" ], "currentOption": 1 },
+
+{ "question": "Какой тип света лучше всего использовать для создания солнечного освещения?", "options": [ "Point Light", "Directional Light", "Spot Light", "Sky Light" ], "currentOption": 1 },
+
+{ "question": "Какой инструмент используется для создания анимаций персонажей?", "options": [ "Cascade", "Persona", "Sequencer", "Material Editor" ], "currentOption": 1 },
+
+{ "question": "Какой файл отвечает за настройки проекта в Unreal Engine?", "options": [ "DefaultEngine.ini", "DefaultGame.ini", "Config.ini", "ProjectSettings.uproject" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания интерактивных элементов в игре?", "options": [ "Static Mesh", "Widget", "Skeletal Mesh", "Decal" ], "currentOption": 1 },
+
+{ "question": "Какой инструмент используется для создания и редактирования материалов?", "options": [ "Blueprint Editor", "Material Editor", "Persona", "Cascade" ], "currentOption": 1 },
+
+{ "question": "Какой тип камеры лучше всего использовать для создания кинематографических сцен?", "options": [ "Player Camera", "Cinematic Camera", "Spring Arm", "Orbit Camera" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания частиц в Unreal Engine?", "options": [ "Static Mesh", "Skeletal Mesh", "Particle System", "Decal" ], "currentOption": 2 },
+
+{ "question": "Какой инструмент используется для создания логики игры?", "options": [ "Material Editor", "Blueprint Editor", "Persona", "Cascade" ], "currentOption": 1 },
+
+{ "question": "Какой формат файлов используется для звуковых эффектов в Unreal Engine?", "options": [ ".fbx", ".wav", ".png", ".txt" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания динамических теней?", "options": [ "Static Mesh", "Skeletal Mesh", "Decal", "Directional Light" ], "currentOption": 3 },
+
+{ "question": "Какой инструмент используется для создания и управления анимациями в реальном времени?", "options": [ "Persona", "Cascade", "Sequencer", "Material Editor" ], "currentOption": 2 },
+
+{ "question": "Какой тип материала лучше всего использовать для создания воды?", "options": [ "Opaque", "Translucent", "Masked", "Additive" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания UI в Unreal Engine?", "options": [ "Static Mesh", "Skeletal Mesh", "Decal", "Widget" ], "currentOption": 3 },
+
+{ "question": "Какой инструмент используется для создания и редактирования частиц?", "options": [ "Persona", "Cascade", "Sequencer", "Material Editor" ], "currentOption": 1 },
+
+{ "question": "Какой формат файлов используется для текстур в Unreal Engine?", "options": [ ".fbx", ".wav", ".png", ".txt" ], "currentOption": 2 },
+
+{ "question": "Какой компонент используется для создания коллизий в Unreal Engine?", "options": [ "Static Mesh", "Collision Component", "Skeletal Mesh", "Decal" ], "currentOption": 1 },
+
+{ "question": "Какой инструмент используется для создания и редактирования скелетных анимаций?", "options": [ "Cascade", "Persona", "Sequencer", "Material Editor" ], "currentOption": 1 },
+
+{ "question": "Какой тип света лучше всего использовать для создания локального освещения?", "options": [ "Directional Light", "Point Light", "Spot Light", "Sky Light" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания звуковых эффектов в игре?", "options": [ "Static Mesh", "Skeletal Mesh", "Decal", "Audio Component" ], "currentOption": 3 },
+
+{ "question": "Какой инструмент используется для создания и управления кинематографическими сценами?", "options": [ "Persona", "Cascade", "Sequencer", "Material Editor" ], "currentOption": 2 },
+
+{ "question": "Какой формат файлов используется для сохранения уровней в Unreal Engine?", "options": [ ".fbx", ".wav", ".txt", ".umap" ], "currentOption": 3 },
+
+{ "question": "Какой компонент используется для создания динамических объектов в игре?", "options": [ "Static Mesh", "Widget", "Skeletal Mesh", "Decal" ], "currentOption": 2 },
+
+{ "question": "Какой инструмент используется для создания и редактирования Blueprints?", "options": [ "Material Editor", "Blueprint Editor", "Persona", "Cascade" ], "currentOption": 1 },
+
+{ "question": "Какой тип материала лучше всего использовать для создания стекла?", "options": [ "Opaque", "Translucent", "Masked", "Additive" ], "currentOption": 1 },
+
+{ "question": "Какой компонент используется для создания визуальных эффектов на поверхности?", "options": [ "Static Mesh", "Skeletal Mesh", "Widget", "Decal" ], "currentOption": 3 },
+
+{ "question": "Какой инструмент используется для создания и управления анимациями лица?", "options": [ "Cascade", "Persona", "Sequencer", "Material Editor" ], "currentOption": 1 },
+
+{ "question": "Какой формат файлов используется для сохранения проектов в Unreal Engine?", "options": [ ".fbx", ".wav", ".txt", ".uproject" ], "currentOption": 3 }
+
+]
