@@ -2,6 +2,7 @@ import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 import asyncio
+from aiohttp import web
 
 # Функция, которая будет вызываться при подписке нового пользователя
 async def welcome_new_member(update: Update, context: CallbackContext):
@@ -11,6 +12,19 @@ async def welcome_new_member(update: Update, context: CallbackContext):
 # Функция, которая будет вызываться при команде /neo
 async def neo_command(update: Update, context: CallbackContext):
     await update.message.reply_text("Вы выбрали команду /neo. Что-то интересное будет здесь!")
+
+# Фиктивный HTTP-сервер
+async def handle(request):
+    return web.Response(text="Bot is running")
+
+async def start_http_server():
+    app = web.Application()
+    app.router.add_get("/", handle)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    site = web.TCPSite(runner, "0.0.0.0", 8080)  # Слушаем порт 8080
+    await site.start()
+    print("HTTP-сервер запущен на порту 8080")
 
 async def main():
     # Вставьте сюда ваш токен
@@ -24,6 +38,9 @@ async def main():
     
     # Регистрируем обработчик для команды /neo
     application.add_handler(CommandHandler("neo", neo_command))
+    
+    # Запускаем фиктивный HTTP-сервер
+    await start_http_server()
     
     # Запускаем бота
     await application.run_polling()
