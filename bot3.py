@@ -1,6 +1,6 @@
 import os
 from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram.ext import Updater, CommandHandler, MessageHandler, filters, CallbackContext
 
 # Функция, которая будет вызываться при подписке нового пользователя
 def welcome_new_member(update: Update, context: CallbackContext):
@@ -14,15 +14,16 @@ def neo_command(update: Update, context: CallbackContext):
 def main():
     # Вставьте сюда ваш токен
     #token = "YOUR_TELEGRAM_BOT_TOKEN"
-    BOT_TOKEN = os.getenv("API_TOKEN")
-    # Создаем Updater и передаем ему токен вашего бота
-    updater = Updater(BOT_TOKEN, use_context=True)
+    token = os.getenv("API_TOKEN")
+    
+ # Создаем Updater и передаем ему токен вашего бота
+    updater = Updater(token, use_context=True)
     
     # Получаем диспетчер для регистрации обработчиков
     dp = updater.dispatcher
     
     # Регистрируем обработчик для приветствия новых участников
-    dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome_new_member))
+    dp.add_handler(MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome_new_member))
     
     # Регистрируем обработчик для команды /neo
     dp.add_handler(CommandHandler("neo", neo_command))
@@ -34,5 +35,4 @@ def main():
     updater.idle()
 
 if __name__ == "__main__":
-    main()    
-bot.polling()
+    main()
