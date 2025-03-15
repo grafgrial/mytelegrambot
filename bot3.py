@@ -1,6 +1,7 @@
 import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
+import asyncio
 
 # Функция, которая будет вызываться при подписке нового пользователя
 async def welcome_new_member(update: Update, context: CallbackContext):
@@ -27,6 +28,16 @@ async def main():
     # Запускаем бота
     await application.run_polling()
 
+# Проверяем, запущен ли уже цикл событий
 if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
+    try:
+        # Если цикл событий уже запущен (например, в Render.com)
+        loop = asyncio.get_event_loop()
+        if loop.is_running():
+            # Используем create_task для запуска main()
+            loop.create_task(main())
+        else:
+            # Иначе используем asyncio.run()
+            asyncio.run(main())
+    except Exception as e:
+        print(f"Ошибка: {e}")
