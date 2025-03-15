@@ -1,8 +1,8 @@
-import os
 from telegram import Update
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackContext
 import asyncio
 from aiohttp import web
+import os
 
 # Функция, которая будет вызываться при подписке нового пользователя
 async def welcome_new_member(update: Update, context: CallbackContext):
@@ -20,16 +20,20 @@ async def handle(request):
 async def start_http_server():
     app = web.Application()
     app.router.add_get("/", handle)
+    
+    # Получаем порт из переменной окружения PORT (по умолчанию 10000)
+    port = int(os.getenv("PORT", 10000))
+    
     runner = web.AppRunner(app)
     await runner.setup()
-    site = web.TCPSite(runner, "0.0.0.0", 8080)  # Слушаем порт 8080
+    site = web.TCPSite(runner, "0.0.0.0", port)  # Слушаем порт из переменной окружения
     await site.start()
-    print("HTTP-сервер запущен на порту 8080")
+    print(f"HTTP-сервер запущен на порту {port}")
 
 async def main():
     # Вставьте сюда ваш токен
     token = os.getenv("API_TOKEN")
-     
+ 
     # Создаем Application и передаем ему токен вашего бота
     application = Application.builder().token(token).build()
     
