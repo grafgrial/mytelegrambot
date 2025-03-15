@@ -15,8 +15,8 @@ async def neo_command(update: Update, context: CallbackContext):
 async def main():
     # Вставьте сюда ваш токен
     token = os.getenv("API_TOKEN")
-    
- # Создаем Application и передаем ему токен вашего бота
+     
+    # Создаем Application и передаем ему токен вашего бота
     application = Application.builder().token(token).build()
     
     # Регистрируем обработчик для приветствия новых участников
@@ -28,16 +28,17 @@ async def main():
     # Запускаем бота
     await application.run_polling()
 
-# Проверяем, запущен ли уже цикл событий
+# Запуск бота
 if __name__ == "__main__":
     try:
-        # Если цикл событий уже запущен (например, в Render.com)
+        # Получаем текущий цикл событий
         loop = asyncio.get_event_loop()
+        
+        # Если цикл событий уже запущен, используем create_task
         if loop.is_running():
-            # Используем create_task для запуска main()
             loop.create_task(main())
         else:
-            # Иначе используем asyncio.run()
-            asyncio.run(main())
+            # Иначе запускаем цикл событий
+            loop.run_until_complete(main())
     except Exception as e:
         print(f"Ошибка: {e}")
