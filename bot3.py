@@ -22,7 +22,7 @@ async def start_http_server():
     app.router.add_get("/", handle)
     
     # Получаем порт из переменной окружения PORT (по умолчанию 10000)
-    port = int(os.getenv("PORT", 10000))
+    port = int(os.getenv("PORT", 8080))
     
     runner = web.AppRunner(app)
     await runner.setup()
