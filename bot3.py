@@ -50,19 +50,17 @@ async def main():
     await application.run_polling()
 
 
-if __name__ == "__main__":
-    main()
 # Запуск бота
-#if __name__ == "__main__":
-   # try:
+if __name__ == "__main__":
+    try:
         # Получаем текущий цикл событий
-      #  loop = asyncio.get_event_loop()
+        loop = asyncio.get_event_loop()
         
         # Если цикл событий уже запущен, используем create_task
-     #   if loop.is_running():
-        #    loop.create_task(main())
-       # else:
+        if loop.is_running():
+           loop.create_task(main())
+        else:
             # Иначе запускаем цикл событий
-      #      loop.run_until_complete(main())
-  #  except Exception as e:
-  #      print(f"Ошибка: {e}")
+            loop.run_until_complete(main())
+    except Exception as e:
+        print(f"Ошибка: {e}")
