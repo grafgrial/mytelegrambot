@@ -33,7 +33,7 @@ async def start_http_server():
 async def main():
     # Вставьте сюда ваш токен
     token = os.getenv("API_TOKEN")
- 
+    
     # Создаем Application и передаем ему токен вашего бота
     application = Application.builder().token(token).build()
     
@@ -49,7 +49,6 @@ async def main():
     # Запускаем бота
     await application.run_polling()
 
-
 # Запуск бота
 if __name__ == "__main__":
     try:
@@ -58,7 +57,7 @@ if __name__ == "__main__":
         
         # Если цикл событий уже запущен, используем create_task
         if loop.is_running():
-           loop.create_task(main())
+            loop.create_task(main())
         else:
             # Иначе запускаем цикл событий
             loop.run_until_complete(main())
