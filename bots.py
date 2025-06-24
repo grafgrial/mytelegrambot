@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Замените на свой токен
 bot = BOT_TOKEN # Вставьте сюда токен вашего бота
 
-@app.route(f'/{TOKEN}', methods=['POST'])
+@app.route(f'/{BOT_TOKEN}', methods=['POST'])
 def webhook():
     update = Update.de_json(request.get_json(force=True), bot)
     chat_id = update.message.chat_id
