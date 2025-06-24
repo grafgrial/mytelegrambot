@@ -1,10 +1,11 @@
 from flask import Flask, request
 from telegram import Update, Bot
+from info import BOT_TOKEN
 
 app = Flask(__name__)
 
 # Замените на свой токен
-bot = os.getenv("API_TOKEN") # Вставьте сюда токен вашего бота
+bot = BOT_TOKEN # Вставьте сюда токен вашего бота
 
 @app.route(f'/{TOKEN}', methods=['POST'])
 def webhook():
